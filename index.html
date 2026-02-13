@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Question for Kenice ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        text-align: center;
+        color: white;
+    }
+
+    #loadingScreen {
+        font-size: 2rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+    .quote {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 20px;
+    }
+
+    button {
+        padding: 15px 25px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #444;
+        color: white;
+    }
+
+    .celebration {
+        font-size: 3rem;
+        animation: pop 0.5s ease forwards;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div id="loadingScreen">
+    <div>Analyzing Kenice Thomas... 💻✨</div>
+    <div id="loadingText">Calculating compatibility... 0%</div>
+</div>
+
+<div id="mainContent" class="hidden">
+    <h1 id="question">Kenice Thomas, will you be my Valentine? 💖</h1>
+    <div class="quote">
+        “Some people don’t just shine… they sparkle so brightly they light up everyone around them.” ✨
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes 😍</button>
+        <button id="noBtn">No 🙃</button>
+    </div>
+</div>
+
+<script>
+    const loadingText = document.getElementById("loadingText");
+    const loadingScreen = document.getElementById("loadingScreen");
+    const mainContent = document.getElementById("mainContent");
+
+    let progress = 0;
+
+    const loadingInterval = setInterval(() => {
+        progress += 5;
+        loadingText.textContent = "Calculating compatibility... " + progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(loadingInterval);
+            loadingText.textContent = "Compatibility Result: 100% PERFECT MATCH 💕✨";
+            setTimeout(() => {
+                loadingScreen.classList.add("hidden");
+                mainContent.classList.remove("hidden");
+            }, 1500);
+        }
+    }, 100);
+
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+
+    const noTexts = [
+        "No 🙃",
+        "Are you sure? 🥺",
+        "Really sure?? 😟",
+        "Think again… 😭",
+        "Kenice please 😢",
+        "I’ll bring snacks though 😩",
+        "You sparkle too much to say no ✨",
+        "This is destiny 😤",
+        "Okay now you're just being dramatic 😭",
+        "Just press yes already 😌"
+    ];
+
+    let noClickCount = 0;
+    let yesSize = 1.2;
+
+    noBtn.addEventListener("click", () => {
+        noClickCount++;
+
+        if (noClickCount < noTexts.length) {
+            noBtn.textContent = noTexts[noClickCount];
+        } else {
+            noBtn.textContent = "It’s fate at this point 😌";
+        }
+
+        // Grow YES button
+        yesSize += 0.4;
+        yesBtn.style.fontSize = yesSize + "rem";
+        yesBtn.style.padding = (15 + noClickCount * 5) + "px " + (25 + noClickCount * 10) + "px";
+
+        // Dramatic effect
+        question.style.transform = "scale(1.1)";
+        setTimeout(() => {
+            question.style.transform = "scale(1)";
+        }, 200);
+    });
+
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <div class="celebration">
+                SHE SAID YESSSS!!! 💕🥰💞✨<br><br>
+                Kenice Thomas officially sparkles even brighter now 😌✨
+            </div>
+        `;
+
+        // Floating hearts
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.textContent = "💖";
+            heart.style.position = "absolute";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "-20px";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            heart.style.animation = "fall 3s linear forwards";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 3000);
+        }, 200);
+    });
+
+    // Falling animation
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>
