@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenice 💙</title>
+<title>Important Question for Kenice ❤️</title>
 
 <style>
     body {
         margin: 0;
         font-family: "Comic Sans MS", cursive, sans-serif;
-        background: linear-gradient(to right, #a6e3ff, #d0f4ff);
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -17,7 +17,7 @@
         flex-direction: column;
         overflow: hidden;
         text-align: center;
-        color: #004c6d;
+        color: white;
     }
 
     #loadingScreen {
@@ -38,11 +38,9 @@
         font-size: 1.2rem;
         margin-bottom: 30px;
         font-style: italic;
-        min-height: 50px;
     }
 
     .buttons {
-        position: relative;
         display: flex;
         gap: 20px;
     }
@@ -57,15 +55,13 @@
     }
 
     #yesBtn {
-        background-color: #0096c7;
+        background-color: #ff4d6d;
         color: white;
     }
 
     #noBtn {
-        background-color: #023e8a;
+        background-color: #444;
         color: white;
-        position: absolute;
-        left: 150px;
     }
 
     .celebration {
@@ -84,13 +80,15 @@
 <body>
 
 <div id="loadingScreen">
-    <div>Analyzing Kenice Thomas... 💻💙</div>
-    <div id="loadingText">Calculating sparkle levels... 0%</div>
+    <div>Analyzing Kenice Thomas... 💻✨</div>
+    <div id="loadingText">Calculating compatibility... 0%</div>
 </div>
 
 <div id="mainContent" class="hidden">
-    <h1 id="question">Kenice Thomas, will you be my Valentine? 💙✨</h1>
-    <div id="quote" class="quote"></div>
+    <h1 id="question">Kenice Thomas, will you be my Valentine? 💖</h1>
+    <div class="quote">
+        “Some people don’t just shine… they sparkle so brightly they light up everyone around them.” ✨
+    </div>
 
     <div class="buttons">
         <button id="yesBtn">Yes 😍</button>
@@ -107,66 +105,46 @@
 
     const loadingInterval = setInterval(() => {
         progress += 5;
-        loadingText.textContent = "Calculating sparkle levels... " + progress + "%";
+        loadingText.textContent = "Calculating compatibility... " + progress + "%";
 
         if (progress >= 100) {
             clearInterval(loadingInterval);
-            loadingText.textContent = "Result: MAXIMUM SPARKLE DETECTED ✨💙 100% MATCH";
+            loadingText.textContent = "Compatibility Result: 100% PERFECT MATCH 💕✨";
             setTimeout(() => {
                 loadingScreen.classList.add("hidden");
                 mainContent.classList.remove("hidden");
-                setRandomQuote();
             }, 1500);
         }
     }, 100);
 
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const quote = document.getElementById("quote");
-
-    const quotes = [
-        "You don’t just shine… you sparkle differently ✨",
-        "Some stars stay in the sky. You chose to walk among us 💙",
-        "Sparkle is not something you wear. It’s something you ARE ✨",
-        "If kindness had a glow, yours would be blinding 💫",
-        "You make ordinary days feel like magic 💙✨",
-        "Even the ocean is jealous of your shine 🌊✨"
-    ];
+    const question = document.getElementById("question");
 
     const noTexts = [
         "No 🙃",
         "Are you sure? 🥺",
         "Really sure?? 😟",
         "Think again… 😭",
-        "Kenice please 😩",
+        "Kenice please 😢",
+        "I’ll bring snacks though 😩",
         "You sparkle too much to say no ✨",
-        "This is fate 💙",
-        "Okay now it’s dramatic 😭"
+        "This is destiny 😤",
+        "Okay now you're just being dramatic 😭",
+        "Just press yes already 😌"
     ];
 
     let noClickCount = 0;
     let yesSize = 1.2;
 
-    function setRandomQuote() {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        quote.textContent = quotes[randomIndex];
-    }
-
-    function moveNoButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
-        noBtn.style.position = "absolute";
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-    }
-
     noBtn.addEventListener("click", () => {
         noClickCount++;
 
-        setRandomQuote();
-
         if (noClickCount < noTexts.length) {
             noBtn.textContent = noTexts[noClickCount];
+        } else {
+            noBtn.textContent = "It’s fate at this point 😌";
         }
 
         // Grow YES button
@@ -174,35 +152,37 @@
         yesBtn.style.fontSize = yesSize + "rem";
         yesBtn.style.padding = (15 + noClickCount * 5) + "px " + (25 + noClickCount * 10) + "px";
 
-        moveNoButton();
-
-        // After enough clicks… disappear 😈
-        if (noClickCount >= 8) {
-            noBtn.style.display = "none";
-        }
+        // Dramatic effect
+        question.style.transform = "scale(1.1)";
+        setTimeout(() => {
+            question.style.transform = "scale(1)";
+        }, 200);
     });
 
     yesBtn.addEventListener("click", () => {
         document.body.innerHTML = `
             <div class="celebration">
-                SHE SAID YESSSS 💙✨<br><br>
-                Kenice Thomas now officially sparkles at legendary level 💫
+                SHE SAID YESSSS!!! 💕🥰💞✨<br><br>
+                Kenice Thomas officially sparkles even brighter now 😌✨
             </div>
         `;
 
+        // Floating hearts
         setInterval(() => {
             const heart = document.createElement("div");
-            heart.textContent = "💙";
+            heart.textContent = "💖";
             heart.style.position = "absolute";
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.top = "-20px";
             heart.style.fontSize = Math.random() * 20 + 20 + "px";
             heart.style.animation = "fall 3s linear forwards";
             document.body.appendChild(heart);
+
             setTimeout(() => heart.remove(), 3000);
         }, 200);
     });
 
+    // Falling animation
     const style = document.createElement("style");
     style.innerHTML = `
         @keyframes fall {
